@@ -20,32 +20,19 @@ hc keyunbind --all
 Mod=Mod4    # Use alt as the main modifier
 
 
-hc keybind $Mod-Shift-b spawn killall polybar
-hc keybind $Mod-b spawn polybar top &
-hc keybind Mod1-b spawn tint2 &
-hc keybind Mod1-Shift-b spawn killall tint2
-
 hc keybind $Mod-Shift-q quit
 hc keybind $Mod-Shift-r reload
 hc keybind $Mod-q close
 hc keybind $Mod-Shift-x spawn xfce4-screensaver-command -l
-hc keybind $Mod-Return spawn "alacritty" # "${TERMINAL:-xterm}" # use your $TERMINAL with xterm as fallback
-hc keybind $Mod-Shift-d spawn "dmenu_run"
+hc keybind $Mod-Return spawn "xfce4-terminal" # "${TERMINAL:-xterm}" # use your $TERMINAL with xterm as fallback
 hc keybind $Mod-e spawn "thunar"
-hc keybind $Mod-Shift-e spawn alacritty -e ranger
 hc keybind $Mod-w spawn "brave-browser"
-hc keybind $Mod-v spawn "pavucontrol"
 hc keybind $Mod-d spawn  rofi -show drun
 hc keybind Mod1-Tab spawn  rofi -show window
-hc keybind $Mod-Shift-p spawn  rofi -show power-menu -modi power-menu:.local/share/rofi/rofi-power-menu -width 15 -lines 6
 hc keybind $Mod-y spawn brave-browser --app=https://youtube.com
 hc keybind $Mod-Shift-y spawn brave-browser --app=https://odysee.com
 hc keybind $Mod-Shift-m spawn mpv --player-operation-mode=pseudo-gui
-hc keybind Mod1-t spawn spt
-hc keybind Mod1-Shift-t spawn  alacritty --class='clock,clock' -e tty-clock -sc
 hc keybind Mod1-d spawn xfce4-appfinder -c
-hc keybind $Mod-Shift-c spawn gnome-calculator
-hc keybind $Mod-Shift-i spawn copyq show
 
 # Volume Control
 hc keybind XF86AudioLowerVolume spawn amixer set Master,0 10%-
@@ -198,17 +185,9 @@ hc rule windowtype~'_NET_WM_WINDOW_TYPE_(DIALOG|UTILITY|SPLASH)' floating=on flo
 hc rule windowtype='_NET_WM_WINDOW_TYPE_DIALOG' focus=on
 hc rule windowtype~'_NET_WM_WINDOW_TYPE_(NOTIFICATION|DOCK|DESKTOP)' manage=off
 hc rule class="FLTK" floating=on floatplacement=center
-hc rule class="Gnome-calendar" floating=on floatplacement=center
 hc rule class="Gimp-2.10" floating=on floatplacement=center
 hc rule class="mpv" floating=on floatplacement=center
-hc rule class="Gpick" floating=on floatplacement=center
-hc rule class="Pavucontrol" floating=on floatplacement=center
 hc rule class="Xfce4-appfinder" floating=on floatplacement=center
-hc rule class="Gnome-calculator" floating=on floatplacement=center
-hc rule class="copyq" floating=on floatplacement=center
-hc rule class="Lxpolkit" floating=on floatplacement=center
-hc rule class="clock" floating=on floatplacement=center
-
 
 
 hc set tree_style '╾│ ├└╼─┐'
@@ -234,9 +213,4 @@ done
 # Startup
 hc spawn picom
 hc spawn nitrogen --restore &
-killall polybar
-# hc spawn polybar top &
-# hc spawn wal -R
 hc spawn xfce4-session
-#hc spawn xfce4-power-manager
-hc spawn lxpolkit
