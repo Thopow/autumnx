@@ -19,3 +19,5 @@ Now we have to add the HLWM autostart file in ~/.config/herbstluftwm/ [(You can 
 
 Now we can log out, change the desktop environment to herbstluftwm and log in into our new "AutumnX" desktop.
 
+(In my HLWM autostart I use also the Brave Browser and the MPV Player.)
+
