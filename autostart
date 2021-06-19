@@ -19,12 +19,15 @@ hc keyunbind --all
 # if you have a super key you will be much happier with Mod set to Mod4
 Mod=Mod4    # Use alt as the main modifier
 
+hc keybind $Mod-Shift-b spawn killall polybar
+hc keybind $Mod-b spawn polybar top &
 
 hc keybind $Mod-Shift-q quit
 hc keybind $Mod-Shift-r reload
 hc keybind $Mod-q close
 hc keybind $Mod-Shift-x spawn xfce4-screensaver-command -l
-hc keybind $Mod-Return spawn "xfce4-terminal" # "${TERMINAL:-xterm}" # use your $TERMINAL with xterm as fallback
+hc keybind $Mod-Return spawn "alacritty" #cs Open-Alacritty
+hc keybind $Mod-Shift-Return spawn alacritty --class='float,float'
 hc keybind $Mod-e spawn "thunar"
 hc keybind $Mod-w spawn "brave-browser"
 hc keybind $Mod-d spawn  rofi -show drun
@@ -48,6 +51,10 @@ hc keybind PrtSc spawn xfce4-screenshooter
 hc keybind F8 spawn setxkbmap us
 hc keybind F9 spawn setxkbmap th
 hc keybind $Mod-F8 spawn xmodmap .Xmodmap
+
+# Layout manager
+hc keybind Mod1-j spawn save-layout 
+hc keybind Mod1-k spawn recall-layout 
 
 # basic movement in tiling and floating mode
 # focusing clients
@@ -147,8 +154,8 @@ hc set frame_border_width 1
 hc set always_show_frame on
 hc set frame_bg_transparent on
 hc set frame_transparent_width 0
-hc set frame_gap 0
-hc set frame_normal_opacity 0.7
+hc set frame_gap 6
+hc set frame_normal_opacity 30
 hc set frame_active_opacity 1
 
 hc attr theme.active.color '#c6606e'
@@ -163,15 +170,20 @@ hc attr theme.floating.outer_color '#dbd2c3'
 hc attr theme.active.inner_color  '#c6606e'
 hc attr theme.active.outer_color '#c6606e'
 hc attr theme.background_color 'transparent'
+hc attr theme.floating.padding_top 0
 
-hc set window_gap 0
+
+hc set window_gap 4
 hc set frame_padding 0
 hc set smart_window_surroundings off
 hc set smart_frame_surroundings on
 hc set mouse_recenter_gap 0
 
-hc keybind $Mod-g cycle_value window_gap 0 25
-hc keybind $Mod-Shift-g cycle_value frame_gap 0 25
+hc keybind $Mod-g cycle_value window_gap 0 4 20
+hc keybind $Mod-Shift-g cycle_value frame_gap 0 6 24
+
+hc keybind Mod1-g spawn ${HOME}/.config/herbstluftwm/scripts/window-gap+
+hc keybind Mod1-Shift-g spawn ${HOME}/.config/herbstluftwm/scripts/window-gap-
 
 # rules
 hc unrule -F
@@ -188,6 +200,8 @@ hc rule class="FLTK" floating=on floatplacement=center
 hc rule class="Gimp-2.10" floating=on floatplacement=center
 hc rule class="mpv" floating=on floatplacement=center
 hc rule class="Xfce4-appfinder" floating=on floatplacement=center
+hc rule class="Lxpolkit" floating=on floatplacement=center
+hc rule class="float" floating=on floatplacement=center
 
 
 hc set tree_style '╾│ ├└╼─┐'
@@ -211,6 +225,12 @@ for monitor in $(hc list_monitors | cut -d: -f1) ; do
 done
 
 # Startup
-hc spawn picom
+hc spawn picom -f
 hc spawn nitrogen --restore &
-hc spawn xfce4-session
+hc spawn xfce4-power-manager
+hc spawn lxpolkit
+hc spawn blueman-applet
+hc spawn nm-applet
+hc spawn dunst
+killall polybar
+hc spawn polybar top
