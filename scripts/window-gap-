@@ -1,0 +1,4 @@
+#!/bin/bash
+WG=`herbstclient get window_gap`
+let "WG=WG-4"
+herbstclient set window_gap $WG
