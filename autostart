@@ -53,8 +53,8 @@ hc keybind F9 spawn setxkbmap th
 hc keybind $Mod-F8 spawn xmodmap .Xmodmap
 
 # Layout manager
-hc keybind Mod1-j spawn save-layout 
-hc keybind Mod1-k spawn recall-layout 
+hc keybind Mod1-j spawn ${HOME}/.config/herbstluftwm/scripts/save-layout 
+hc keybind Mod1-k spawn ${HOME}/.config/herbstluftwm/scripts/recall-layout 
 
 # basic movement in tiling and floating mode
 # focusing clients
