@@ -1,0 +1,14 @@
+#!/usr/bin/bash
+#  ______      ____
+# /_  __/___  / __ \____ _      __
+#  / / / __ \/ /_/ / __ \ | /| / /
+# / / / /_/ / ____/ /_/ / |/ |/ /
+#/_/  \____/_/    \____/|__/|__/
+#
+# recall layouts for herbstluftwm
+
+LO=`ls -C ~/.config/herbstluftwm/layouts/`
+
+SEL=`zenity --list --title="Choose a Layout" --column="Layouts" $LO`
+
+cat ~/.config/herbstluftwm/layouts/$SEL | bash
